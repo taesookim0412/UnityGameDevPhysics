@@ -18,5 +18,5 @@ void Update(){
 }
 
 void FixedUpdate(){
-    rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+    rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime, ForceMode.Impulse);
 }

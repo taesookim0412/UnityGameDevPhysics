@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float moveSpeed;
     public float jumpForce;
     private Rigidbody rig;
+    private AudioSource audioSrc;
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+        audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,21 @@ public class PlayerController : MonoBehaviour
         if (cast1 || cast2 || cast3 || cast4)
         {
             rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (other.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            audioSrc.Play();
+            //audioSrc.clip = var;
+            //audioSrc.PlayOneShot(var);
         }
     }
 }

@@ -9,15 +9,21 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     private Rigidbody rig;
     private AudioSource audioSrc;
-    void Start()
+    void Awake()
     {
         rig = GetComponent<Rigidbody>();
         audioSrc = GetComponent<AudioSource>();
+
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.paused)
+        {
+            return;
+        }
         Move();
         if (Input.GetButtonDown("Jump"))
         {
@@ -33,14 +39,14 @@ public class PlayerController : MonoBehaviour
         dir.y = rig.velocity.y;
 
         rig.velocity = dir;
-
+        
         Vector3 facingDir = new Vector3(xInput, 0, zInput);
         if (facingDir.magnitude > 0)
-        {
+        { 
             transform.forward = facingDir;
         }
     }
-
+    
     void tryJump()
     {
         Ray ray1 = new Ray(transform.position + new Vector3(0.5f, 0, 0.5f), Vector3.down);
@@ -63,14 +69,19 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.instance.GameOver();
         }
         else if (other.CompareTag("Coin"))
         {
+            GameManager.instance.addScore(1);
             Destroy(other.gameObject);
             audioSrc.Play();
             //audioSrc.clip = var;
             //audioSrc.PlayOneShot(var);
+        }
+        else if (other.CompareTag("Goal"))
+        {
+            GameManager.instance.levelEnd();
         }
     }
 }

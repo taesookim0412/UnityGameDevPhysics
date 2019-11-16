@@ -11,7 +11,7 @@ public class CoinController : MonoBehaviour
     private Vector3 startPos;
     private Vector3 targetPos;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         startPos = transform.position;
         targetPos = startPos + new Vector3(0, bobHeight, 0);

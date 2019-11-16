@@ -18,6 +18,7 @@ public class CameraFollow : MonoBehaviour
         if (target == null)
             return;
         Vector3 newPos = target.position + offset;
+        // Or comment below to remove constant y;
         newPos.y = offset.y;
 
         transform.position = newPos;

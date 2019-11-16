@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 targetPos;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         startPos = transform.position;
         targetPos = startPos + offsetEndPos;

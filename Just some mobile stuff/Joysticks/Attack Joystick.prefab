@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7084235778748577528}
   - component: {fileID: 1348893415426823179}
   m_Layer: 5
-  m_Name: Dynamic Joystick
+  m_Name: Attack Joystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,6 @@ MonoBehaviour:
   background: {fileID: 7084235779787134628}
   handle: {fileID: 7084235779425211854}
   moveThreshold: 1
-  setActive: 0
 --- !u!114 &1348893415426823179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,11 +105,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7084235778748577526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e96056547f8dfd46904eb2a827966b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1de9f042918253243830968ee2f73a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 5752959669041724516, guid: 80bd7f0cc7512094abe1a8ab863576b2,
-    type: 3}
+  projectile: {fileID: 0}
   player: {fileID: 0}
   shootForce: 10000
 --- !u!1 &7084235779425211855
